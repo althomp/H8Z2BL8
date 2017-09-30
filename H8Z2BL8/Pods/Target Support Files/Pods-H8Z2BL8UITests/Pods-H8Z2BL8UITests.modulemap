@@ -1,0 +1,6 @@
+framework module Pods_H8Z2BL8UITests {
+  umbrella header "Pods-H8Z2BL8UITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
