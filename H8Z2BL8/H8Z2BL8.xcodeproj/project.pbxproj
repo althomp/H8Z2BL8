@@ -11,7 +11,7 @@
 		75BBD57987794C1109AD1BD8 /* Pods_H8Z2BL8UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C2CDB39362E838A4DC5F26 /* Pods_H8Z2BL8UITests.framework */; };
 		E8200DD7DE8FDA2714F58BF2 /* Pods_H8Z2BL8.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48062D6E5CB9C700576D687 /* Pods_H8Z2BL8.framework */; };
 		EB87851B1F7F22CE008ED562 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB87851A1F7F22CE008ED562 /* AppDelegate.swift */; };
-		EB87851D1F7F22CE008ED562 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB87851C1F7F22CE008ED562 /* ViewController.swift */; };
+		EB87851D1F7F22CE008ED562 /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB87851C1F7F22CE008ED562 /* TrainViewController.swift */; };
 		EB8785201F7F22CE008ED562 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB87851E1F7F22CE008ED562 /* Main.storyboard */; };
 		EB8785231F7F22CE008ED562 /* H8Z2BL8.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB8785211F7F22CE008ED562 /* H8Z2BL8.xcdatamodeld */; };
 		EB8785251F7F22CE008ED562 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB8785241F7F22CE008ED562 /* Assets.xcassets */; };
@@ -51,7 +51,7 @@
 		C2C2CDB39362E838A4DC5F26 /* Pods_H8Z2BL8UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H8Z2BL8UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8785171F7F22CE008ED562 /* H8Z2BL8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = H8Z2BL8.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB87851A1F7F22CE008ED562 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EB87851C1F7F22CE008ED562 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EB87851C1F7F22CE008ED562 /* TrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewController.swift; sourceTree = "<group>"; };
 		EB87851F1F7F22CE008ED562 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EB8785221F7F22CE008ED562 /* H8Z2BL8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = H8Z2BL8.xcdatamodel; sourceTree = "<group>"; };
 		EB8785241F7F22CE008ED562 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,13 +136,14 @@
 			isa = PBXGroup;
 			children = (
 				EB87851A1F7F22CE008ED562 /* AppDelegate.swift */,
-				EB87851C1F7F22CE008ED562 /* ViewController.swift */,
 				EB87851E1F7F22CE008ED562 /* Main.storyboard */,
 				EB8785241F7F22CE008ED562 /* Assets.xcassets */,
 				EB8785261F7F22CE008ED562 /* LaunchScreen.storyboard */,
 				EB8785291F7F22CE008ED562 /* Info.plist */,
 				EB8785211F7F22CE008ED562 /* H8Z2BL8.xcdatamodeld */,
-				EB87854B1F7FEB0F008ED562 /* Data */,
+				EB8785541F7FFB4D008ED562 /* Train */,
+				EB8785551F7FFB56008ED562 /* Car */,
+				EB8785561F7FFB5D008ED562 /* Bike */,
 			);
 			path = H8Z2BL8;
 			sourceTree = "<group>";
@@ -165,14 +166,29 @@
 			path = H8Z2BL8UITests;
 			sourceTree = "<group>";
 		};
-		EB87854B1F7FEB0F008ED562 /* Data */ = {
+		EB8785541F7FFB4D008ED562 /* Train */ = {
 			isa = PBXGroup;
 			children = (
+				EB87851C1F7F22CE008ED562 /* TrainViewController.swift */,
 				EB87854C1F7FEB3D008ED562 /* Train.swift */,
+			);
+			path = Train;
+			sourceTree = "<group>";
+		};
+		EB8785551F7FFB56008ED562 /* Car */ = {
+			isa = PBXGroup;
+			children = (
 				EB8785501F7FEBAA008ED562 /* Car.swift */,
+			);
+			path = Car;
+			sourceTree = "<group>";
+		};
+		EB8785561F7FFB5D008ED562 /* Bike */ = {
+			isa = PBXGroup;
+			children = (
 				EB8785521F7FEBC7008ED562 /* BikeStation.swift */,
 			);
-			path = Data;
+			path = Bike;
 			sourceTree = "<group>";
 		};
 		F0E79CFE4A37DD9B36701B84 /* Frameworks */ = {
@@ -467,7 +483,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB87854D1F7FEB3D008ED562 /* Train.swift in Sources */,
-				EB87851D1F7F22CE008ED562 /* ViewController.swift in Sources */,
+				EB87851D1F7F22CE008ED562 /* TrainViewController.swift in Sources */,
 				EB8785231F7F22CE008ED562 /* H8Z2BL8.xcdatamodeld in Sources */,
 				EB8785511F7FEBAA008ED562 /* Car.swift in Sources */,
 				EB8785531F7FEBC7008ED562 /* BikeStation.swift in Sources */,
