@@ -18,6 +18,9 @@
 		EB8785281F7F22CE008ED562 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB8785261F7F22CE008ED562 /* LaunchScreen.storyboard */; };
 		EB8785331F7F22CE008ED562 /* H8Z2BL8Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8785321F7F22CE008ED562 /* H8Z2BL8Tests.swift */; };
 		EB87853E1F7F22CE008ED562 /* H8Z2BL8UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB87853D1F7F22CE008ED562 /* H8Z2BL8UITests.swift */; };
+		EB87854D1F7FEB3D008ED562 /* Train.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB87854C1F7FEB3D008ED562 /* Train.swift */; };
+		EB8785511F7FEBAA008ED562 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8785501F7FEBAA008ED562 /* Car.swift */; };
+		EB8785531F7FEBC7008ED562 /* BikeStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8785521F7FEBC7008ED562 /* BikeStation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,9 @@
 		EB8785391F7F22CE008ED562 /* H8Z2BL8UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = H8Z2BL8UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB87853D1F7F22CE008ED562 /* H8Z2BL8UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H8Z2BL8UITests.swift; sourceTree = "<group>"; };
 		EB87853F1F7F22CE008ED562 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB87854C1F7FEB3D008ED562 /* Train.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Train.swift; sourceTree = "<group>"; };
+		EB8785501F7FEBAA008ED562 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		EB8785521F7FEBC7008ED562 /* BikeStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStation.swift; sourceTree = "<group>"; };
 		F48062D6E5CB9C700576D687 /* Pods_H8Z2BL8.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H8Z2BL8.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -136,6 +142,7 @@
 				EB8785261F7F22CE008ED562 /* LaunchScreen.storyboard */,
 				EB8785291F7F22CE008ED562 /* Info.plist */,
 				EB8785211F7F22CE008ED562 /* H8Z2BL8.xcdatamodeld */,
+				EB87854B1F7FEB0F008ED562 /* Data */,
 			);
 			path = H8Z2BL8;
 			sourceTree = "<group>";
@@ -156,6 +163,16 @@
 				EB87853F1F7F22CE008ED562 /* Info.plist */,
 			);
 			path = H8Z2BL8UITests;
+			sourceTree = "<group>";
+		};
+		EB87854B1F7FEB0F008ED562 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				EB87854C1F7FEB3D008ED562 /* Train.swift */,
+				EB8785501F7FEBAA008ED562 /* Car.swift */,
+				EB8785521F7FEBC7008ED562 /* BikeStation.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		F0E79CFE4A37DD9B36701B84 /* Frameworks */ = {
@@ -449,8 +466,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB87854D1F7FEB3D008ED562 /* Train.swift in Sources */,
 				EB87851D1F7F22CE008ED562 /* ViewController.swift in Sources */,
 				EB8785231F7F22CE008ED562 /* H8Z2BL8.xcdatamodeld in Sources */,
+				EB8785511F7FEBAA008ED562 /* Car.swift in Sources */,
+				EB8785531F7FEBC7008ED562 /* BikeStation.swift in Sources */,
 				EB87851B1F7F22CE008ED562 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
