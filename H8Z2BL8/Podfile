@@ -4,6 +4,7 @@ target 'H8Z2BL8' do
   use_frameworks!
 
   pod 'SwiftyJSON', '3.1.4'
+  pod 'MBProgressHUD', '~> 1.0.0'
 
   target 'H8Z2BL8Tests' do
     inherit! :search_paths

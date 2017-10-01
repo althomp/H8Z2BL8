@@ -9,16 +9,33 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Train-->
+        <scene sceneID="mxi-QQ-8hh">
+            <objects>
+                <navigationController id="Nv6-cJ-S94" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Train" id="68b-wD-zOc"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fpE-k4-84c">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="SD7-aY-r6E" kind="relationship" relationship="rootViewController" id="RjI-7N-EOH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dxm-wj-Gy5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2830" y="-1027"/>
+        </scene>
         <!--Car-->
         <scene sceneID="HzL-fd-f8C">
             <objects>
-                <tableViewController id="57T-eJ-llT" customClass="CarTableViewController" customModule="H8Z2BL8" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="57T-eJ-llT" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="xxm-KT-5Di">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="4IM-xh-KQc">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="4IM-xh-KQc">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4IM-xh-KQc" id="KeR-cm-shO">
@@ -47,7 +64,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fNe-SE-fgj">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="fNe-SE-fgj">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fNe-SE-fgj" id="Ogl-5Y-gYT">
@@ -71,13 +88,14 @@
         <scene sceneID="Zjd-Tg-2Hz">
             <objects>
                 <tabBarController id="5Dr-25-xAA" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="zuf-tr-MQT"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="k7b-02-NRa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="SD7-aY-r6E" kind="relationship" relationship="viewControllers" id="ErJ-8v-bX8"/>
+                        <segue destination="Nv6-cJ-S94" kind="relationship" relationship="viewControllers" id="4EC-l8-mqr"/>
                         <segue destination="57T-eJ-llT" kind="relationship" relationship="viewControllers" id="qNq-e2-dAe"/>
                         <segue destination="Eks-fz-LJy" kind="relationship" relationship="viewControllers" id="fc0-2k-4qM"/>
                     </connections>
@@ -151,10 +169,11 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Train" id="HOQ-SF-MOg"/>
+                    <navigationItem key="navigationItem" id="cbD-Ud-RDo"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8B8-er-UgU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2978.4000000000001" y="-707.49625187406298"/>
+            <point key="canvasLocation" x="-3506" y="-258"/>
         </scene>
     </scenes>
 </document>
