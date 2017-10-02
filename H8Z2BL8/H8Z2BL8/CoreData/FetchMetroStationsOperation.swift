@@ -81,8 +81,8 @@ class FetchMetroStationsOperation: Operation {
                     }
                     
                     metroStation.code = code
-                    metroStation.lat = jsonMetroStation["Lat"].float ?? 0
-                    metroStation.long = jsonMetroStation["Long"].float ?? 0
+                    metroStation.lat = jsonMetroStation["Lat"].double ?? 0
+                    metroStation.long = jsonMetroStation["Lon"].double ?? 0
                     metroStation.name = jsonMetroStation["Name"].string ?? ""
                 }
             }

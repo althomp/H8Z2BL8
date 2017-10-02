@@ -15,6 +15,8 @@ class TrainTableViewController: UITableViewController {
     
     var tableData: [Train] = []
     var locationManager: CLLocationManager!
+    var closestStationCode = ""
+    var closestStationName = ""
     
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var _fetchedResultsController: NSFetchedResultsController<MetroStation>? = nil
@@ -24,6 +26,9 @@ class TrainTableViewController: UITableViewController {
         }
         
         let fetchRequest: NSFetchRequest<MetroStation> = MetroStation.fetchRequest()
+        
+        let sortDescriptor = NSSortDescriptor(key: "lat", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         
         let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         aFetchedResultsController.delegate = self
@@ -43,8 +48,6 @@ class TrainTableViewController: UITableViewController {
         
         let operation = FetchMetroStationsOperation(viewController: self)
         OperationQueue.main.addOperation(operation)
-        
-        self.navigationItem.title = "Train"
         
         trainFetch()
         self.refreshControl = UIRefreshControl()
@@ -73,7 +76,8 @@ class TrainTableViewController: UITableViewController {
     }
     
     @objc func trainFetch() {
-        if var urlComponents = URLComponents(string: "https://api.wmata.com/StationPrediction.svc/json/GetPrediction/All") {
+        print("The closest station is: \(closestStationCode)")
+        if var urlComponents = URLComponents(string: "https://api.wmata.com/StationPrediction.svc/json/GetPrediction/\(closestStationCode)") {
             urlComponents.query = "api_key=e1eee2b5677f408da40af8480a5fd5a8"
             
             if let url = urlComponents.url {
@@ -105,6 +109,7 @@ class TrainTableViewController: UITableViewController {
             }
         }
         DispatchQueue.main.async(execute: {
+            self.navigationItem.title = "\(self.closestStationName) Station"
             self.tableView.reloadData()
             if let refreshControl = self.refreshControl, refreshControl.isRefreshing {
                 refreshControl.endRefreshing()
@@ -149,15 +154,40 @@ class TrainTableViewController: UITableViewController {
 
 extension TrainTableViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation:CLLocation = locations[0] as CLLocation
+        let userLocation = locations[0] as CLLocation
         
         print("user latitude = \(userLocation.coordinate.latitude)")
         print("user longitude = \(userLocation.coordinate.longitude)")
+        
+        getClosestStation(to: userLocation)
+        trainFetch()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
     {
         print("Error \(error)")
+    }
+    
+    func getClosestStation(to location: CLLocation) {
+        var closestDistance: Double?
+        
+        if let results = fetchedResultsController.fetchedObjects {
+            for station in results {
+                let stationCoords = CLLocation(latitude: station.lat, longitude: station.long)
+                
+                let distanceInMeters = stationCoords.distance(from: location)
+                if let _ = closestDistance {
+                    if distanceInMeters < closestDistance! {
+                        closestDistance = distanceInMeters
+                        closestStationCode = station.code ?? ""
+                        closestStationName = station.name ?? ""
+                    }
+                } else {
+                    closestDistance = distanceInMeters
+                    closestStationName = station.name ?? ""
+                }
+            }
+        }
     }
 }
 
