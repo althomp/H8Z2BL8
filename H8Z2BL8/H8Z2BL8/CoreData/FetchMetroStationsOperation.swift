@@ -17,9 +17,12 @@ class FetchMetroStationsOperation: Operation {
     private var view : UIView?
     private var viewController: UIViewController?
     
-    let urlString = "https://api.wmata.com/Rail.svc/json/jStations?api_key=e1eee2b5677f408da40af8480a5fd5a8"
+    private let entityName = "MetroStation"
+    private let uniqueIdentifier = "code"
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
+    private let urlString = "https://api.wmata.com/Rail.svc/json/jStations?api_key=e1eee2b5677f408da40af8480a5fd5a8"
+    
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
     
     private var codes = Set<String>()
     
@@ -29,7 +32,7 @@ class FetchMetroStationsOperation: Operation {
     }
     
     override func main () {
-        if let view = self.view, !coreDataContainsMetroStations() {
+        if let view = self.view, !CoreDataHelper.coreDataContains(entityName, context: context) {
             let hud = MBProgressHUD.showAdded(to: view, animated: true)
             let loadingString = NSLocalizedString("Loading", comment: "loading message while waiting for data to load")
             hud.label.text = loadingString
@@ -45,12 +48,12 @@ class FetchMetroStationsOperation: Operation {
                 if let data = data , httpRes.statusCode == 200 {
                     let json = JSON(data: data)
                     self.parseMetroStations(json)
-                    self.removeOldObjects()
+                    CoreDataHelper.removeOldObjects(for: self.entityName, with: self.uniqueIdentifier, newObjects: self.codes, context: self.context)
                     do {
                         try self.context.save()
                     } catch {}
                 } else {
-                    if !self.coreDataContainsMetroStations(), let vc = self.viewController {
+                    if !CoreDataHelper.coreDataContains(self.entityName, context: self.context), let vc = self.viewController {
                         // Show error message
                         let alertController: UIAlertController = UIAlertController(title: NSLocalizedString("Can't display metro stations", comment: "title for failed metroStation fetch"), message: NSLocalizedString("Metro station data is not avaliable at this time.", comment: "message for failed metroStation fetch"), preferredStyle: .alert)
                         alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK action"), style: .default, handler: nil))
@@ -74,7 +77,7 @@ class FetchMetroStationsOperation: Operation {
                     codes.insert(code)
                     
                     var metroStation: MetroStation
-                    if let result = checkCoreDataFor(code, entityName: "MetroStation") {
+                    if let result = CoreDataHelper.checkCoreData(for: code, entityName: entityName, with: uniqueIdentifier, context: context) {
                         metroStation = result as! MetroStation
                     } else {
                         metroStation = MetroStation(context: context)
@@ -88,45 +91,6 @@ class FetchMetroStationsOperation: Operation {
             }
         }
     }
-    
-    func checkCoreDataFor(_ code: String, entityName: String) -> Any? {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        fetchRequest.predicate = NSPredicate(format: "code == %@", code)
-        fetchRequest.fetchBatchSize = 1
-        do {
-            let results = try context.fetch(fetchRequest)
-            if results.count > 0 {
-                return results[0]
-            }
-        } catch { print("FetchMetroStationsOperation checkCoreDataFor error \(error)") }
-        return nil
-    }
-    
-    func coreDataContainsMetroStations() -> Bool {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MetroStation")
-        fetchRequest.fetchBatchSize = 1
-        do {
-            let results = try context.fetch(fetchRequest)
-            if results.count > 0 {
-                return true
-            }
-        } catch { print("FetchMetroStationsOperation coreDataContainsMetroStations error \(error)") }
-        return false
-    }
-    
-    func removeOldObjects() {
-        if codes.count > 0 {
-            let ooFetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MetroStation")
-            ooFetchRequest.predicate = NSPredicate(format: "NOT code IN %@", codes)
-            do {
-                let outdatedObjects = try context.fetch(ooFetchRequest)
-                for obj in outdatedObjects {
-                    context.delete(obj as! MetroStation)
-                }
-            } catch { print("FetchMetroStationsOperation removeOldObjects error \(error)")  }
-        }
-        
-    }
-    
+
 }
 

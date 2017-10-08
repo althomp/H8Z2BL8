@@ -10,6 +10,8 @@
 		361B555CE1FF1508D7D93EB9 /* Pods_H8Z2BL8Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7C93D0BFCF4F628636A42D3 /* Pods_H8Z2BL8Tests.framework */; };
 		75BBD57987794C1109AD1BD8 /* Pods_H8Z2BL8UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C2CDB39362E838A4DC5F26 /* Pods_H8Z2BL8UITests.framework */; };
 		E8200DD7DE8FDA2714F58BF2 /* Pods_H8Z2BL8.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48062D6E5CB9C700576D687 /* Pods_H8Z2BL8.framework */; };
+		EB362C5A1F896A66007A36D6 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB362C591F896A66007A36D6 /* CoreDataHelper.swift */; };
+		EB45A36D1F893691009D1FDD /* FetchBikeStationOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB45A36C1F893691009D1FDD /* FetchBikeStationOperations.swift */; };
 		EB5488511F81AA7300E6C564 /* FetchMetroStationsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5488501F81AA7300E6C564 /* FetchMetroStationsOperation.swift */; };
 		EB87851B1F7F22CE008ED562 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB87851A1F7F22CE008ED562 /* AppDelegate.swift */; };
 		EB87851D1F7F22CE008ED562 /* TrainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB87851C1F7F22CE008ED562 /* TrainTableViewController.swift */; };
@@ -21,7 +23,6 @@
 		EB87853E1F7F22CE008ED562 /* H8Z2BL8UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB87853D1F7F22CE008ED562 /* H8Z2BL8UITests.swift */; };
 		EB87854D1F7FEB3D008ED562 /* Train.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB87854C1F7FEB3D008ED562 /* Train.swift */; };
 		EB8785511F7FEBAA008ED562 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8785501F7FEBAA008ED562 /* Car.swift */; };
-		EB8785531F7FEBC7008ED562 /* BikeStation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8785521F7FEBC7008ED562 /* BikeStation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,8 @@
 		95D43BD79E0B542BE00A9CBD /* Pods-H8Z2BL8Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-H8Z2BL8Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-H8Z2BL8Tests/Pods-H8Z2BL8Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B7C93D0BFCF4F628636A42D3 /* Pods_H8Z2BL8Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H8Z2BL8Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2C2CDB39362E838A4DC5F26 /* Pods_H8Z2BL8UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H8Z2BL8UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB362C591F896A66007A36D6 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		EB45A36C1F893691009D1FDD /* FetchBikeStationOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchBikeStationOperations.swift; sourceTree = "<group>"; };
 		EB54884E1F81A20300E6C564 /* AvalonCourthouse.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AvalonCourthouse.gpx; sourceTree = "<group>"; };
 		EB5488501F81AA7300E6C564 /* FetchMetroStationsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMetroStationsOperation.swift; sourceTree = "<group>"; };
 		EB8785171F7F22CE008ED562 /* H8Z2BL8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = H8Z2BL8.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,7 +71,6 @@
 		EB87853F1F7F22CE008ED562 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB87854C1F7FEB3D008ED562 /* Train.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Train.swift; sourceTree = "<group>"; };
 		EB8785501F7FEBAA008ED562 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
-		EB8785521F7FEBC7008ED562 /* BikeStation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStation.swift; sourceTree = "<group>"; };
 		F48062D6E5CB9C700576D687 /* Pods_H8Z2BL8.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H8Z2BL8.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -118,6 +120,8 @@
 			children = (
 				EB8785211F7F22CE008ED562 /* H8Z2BL8.xcdatamodeld */,
 				EB5488501F81AA7300E6C564 /* FetchMetroStationsOperation.swift */,
+				EB45A36C1F893691009D1FDD /* FetchBikeStationOperations.swift */,
+				EB362C591F896A66007A36D6 /* CoreDataHelper.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -199,7 +203,6 @@
 		EB8785561F7FFB5D008ED562 /* Bike */ = {
 			isa = PBXGroup;
 			children = (
-				EB8785521F7FEBC7008ED562 /* BikeStation.swift */,
 			);
 			path = Bike;
 			sourceTree = "<group>";
@@ -497,10 +500,11 @@
 			files = (
 				EB87854D1F7FEB3D008ED562 /* Train.swift in Sources */,
 				EB87851D1F7F22CE008ED562 /* TrainTableViewController.swift in Sources */,
+				EB362C5A1F896A66007A36D6 /* CoreDataHelper.swift in Sources */,
+				EB45A36D1F893691009D1FDD /* FetchBikeStationOperations.swift in Sources */,
 				EB8785231F7F22CE008ED562 /* H8Z2BL8.xcdatamodeld in Sources */,
 				EB8785511F7FEBAA008ED562 /* Car.swift in Sources */,
 				EB5488511F81AA7300E6C564 /* FetchMetroStationsOperation.swift in Sources */,
-				EB8785531F7FEBC7008ED562 /* BikeStation.swift in Sources */,
 				EB87851B1F7F22CE008ED562 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
