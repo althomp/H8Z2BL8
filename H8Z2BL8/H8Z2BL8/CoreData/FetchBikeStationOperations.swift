@@ -73,20 +73,22 @@ class FetchBikeStationsInfoOperation: Operation {
     func parseBikeStations(_ json: JSON) {
         if let jsonBikeStationsArray = json["data"]["stations"].array {
             for jsonBikeStation in jsonBikeStationsArray {
-                if let stationId = jsonBikeStation["station_id"].string, !stationId.isEmpty {
-                    ids.insert(stationId)
-                    
-                    var bikeStation: BikeStation
-                    if let result = CoreDataHelper.checkCoreData(for: stationId, entityName: entityName, with: uniqueIdentifier, context: context) {
-                        bikeStation = result as! BikeStation
-                    } else {
-                        bikeStation = BikeStation(context: context)
+                if let isInstalled = jsonBikeStation["is_installed"].int, isInstalled == 1 {
+                    if let stationId = jsonBikeStation["station_id"].string, !stationId.isEmpty {
+                        ids.insert(stationId)
+                        
+                        var bikeStation: BikeStation
+                        if let result = CoreDataHelper.checkCoreData(for: stationId, entityName: entityName, with: uniqueIdentifier, context: context) {
+                            bikeStation = result as! BikeStation
+                        } else {
+                            bikeStation = BikeStation(context: context)
+                        }
+                        
+                        bikeStation.stationId = stationId
+                        bikeStation.lat = jsonBikeStation["lat"].double ?? 0
+                        bikeStation.lon = jsonBikeStation["lon"].double ?? 0
+                        bikeStation.name = jsonBikeStation["name"].string ?? ""
                     }
-                    
-                    bikeStation.stationId = stationId
-                    bikeStation.lat = jsonBikeStation["lat"].double ?? 0
-                    bikeStation.lon = jsonBikeStation["lon"].double ?? 0
-                    bikeStation.name = jsonBikeStation["name"].string ?? ""
                 }
             }
         }

@@ -69,6 +69,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    var wmataApiKey: String {
+        if let plistPath = Bundle.main.path(forResource: "Info", ofType: "plist"), let customizationsDictionary = NSDictionary(contentsOfFile: plistPath) as? Dictionary<String, AnyObject> {
+            
+        let wmataApiKey = customizationsDictionary["WMATA API Key"] as! String
+            return wmataApiKey
+        } else {
+            return ""
+        }
+    }
 
 }
 

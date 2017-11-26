@@ -41,5 +41,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>WMATA API Key</key>
+	<string>e13626d03d8e4c03ac07f95541b3091b</string>
 </dict>
 </plist>

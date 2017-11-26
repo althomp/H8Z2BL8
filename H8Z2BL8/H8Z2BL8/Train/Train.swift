@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Train {
+struct Train {
     var destinationName: String
     var line: String
     var minToArrival: String
@@ -20,7 +20,7 @@ class Train {
         self.minToArrival = minToArrival
         self.color = setColor(for: line)
     }
-    
+
     func setColor(for line: String) -> UIColor {
         switch line {
         case "RD":

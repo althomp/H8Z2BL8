@@ -13,12 +13,13 @@ import CoreData
 
 class TrainTableViewController: UITableViewController {
     
+    let apiKey = (UIApplication.shared.delegate as! AppDelegate).wmataApiKey
     var tableData: [Train] = []
     var locationManager: CLLocationManager!
     var closestStationCode = ""
     var closestStationName = ""
     
-    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var _fetchedResultsController: NSFetchedResultsController<MetroStation>? = nil
     var fetchedResultsController: NSFetchedResultsController<MetroStation> {
         if let _ = _fetchedResultsController {
@@ -78,9 +79,10 @@ class TrainTableViewController: UITableViewController {
     @objc func trainFetch() {
         print("The closest station is: \(closestStationCode)")
         if var urlComponents = URLComponents(string: "https://api.wmata.com/StationPrediction.svc/json/GetPrediction/\(closestStationCode)") {
-            urlComponents.query = "api_key=e1eee2b5677f408da40af8480a5fd5a8"
+            urlComponents.query = "api_key=\(apiKey)"
             
             if let url = urlComponents.url {
+                print("train fetch url: \(url)")
                 let defaultSession = URLSession(configuration: .default)
                 let dataTask = defaultSession.dataTask(with: url) { data, response, error in
                     if let error = error {

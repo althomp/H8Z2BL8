@@ -20,7 +20,8 @@ class FetchMetroStationsOperation: Operation {
     private let entityName = "MetroStation"
     private let uniqueIdentifier = "code"
     
-    private let urlString = "https://api.wmata.com/Rail.svc/json/jStations?api_key=e1eee2b5677f408da40af8480a5fd5a8"
+    let apiKey = (UIApplication.shared.delegate as! AppDelegate).wmataApiKey
+    private let urlString = "https://api.wmata.com/Rail.svc/json/jStations"
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
     
@@ -39,7 +40,11 @@ class FetchMetroStationsOperation: Operation {
             UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, loadingString)
         }
         
-        let url = URL(string: urlString)!
+        guard var urlComponents = URLComponents(string: urlString) else { return }
+        urlComponents.query = "api_key=\(apiKey)"
+
+        guard let url = urlComponents.url else { return }
+        
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         
@@ -69,7 +74,7 @@ class FetchMetroStationsOperation: Operation {
         }
         task.resume()
     }
-    
+
     func parseMetroStations(_ json: JSON) {
         if let jsonMetroStationsArray = json["Stations"].array {
             for jsonMetroStation in jsonMetroStationsArray {

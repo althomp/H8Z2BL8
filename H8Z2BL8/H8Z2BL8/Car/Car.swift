@@ -6,7 +6,7 @@
 //  Copyright © 2017 althomp. All rights reserved.
 //
 
-class Car {
+struct Car {
     var rideshareCompany: String
     var rideType: String
     var secToArrival: String
