@@ -20,7 +20,7 @@ class FetchMetroStationsOperation: Operation {
     private let entityName = "MetroStation"
     private let uniqueIdentifier = "code"
     
-    let apiKey = (UIApplication.shared.delegate as! AppDelegate).wmataApiKey
+    private let apiKey = (UIApplication.shared.delegate as! AppDelegate).wmataApiKey
     private let urlString = "https://api.wmata.com/Rail.svc/json/jStations"
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()

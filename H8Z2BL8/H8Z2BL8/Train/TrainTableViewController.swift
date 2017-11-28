@@ -11,17 +11,19 @@ import SwiftyJSON
 import CoreLocation
 import CoreData
 
-class TrainTableViewController: UITableViewController {
+class TrainTableViewController: UITableViewController, TransportationProtocol {
+    typealias Transport = Train
     
+    let urlString = "https://api.wmata.com/StationPrediction.svc/json/GetPrediction/"
     let apiKey = (UIApplication.shared.delegate as! AppDelegate).wmataApiKey
     var tableData: [Train] = []
     var locationManager: CLLocationManager!
-    var closestStationCode = ""
-    var closestStationName = ""
+    private var closestStationCode = ""
+    private var closestStationName = ""
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var _fetchedResultsController: NSFetchedResultsController<MetroStation>? = nil
-    var fetchedResultsController: NSFetchedResultsController<MetroStation> {
+    private var _fetchedResultsController: NSFetchedResultsController<MetroStation>? = nil
+    private var fetchedResultsController: NSFetchedResultsController<MetroStation> {
         if let _ = _fetchedResultsController {
             return _fetchedResultsController!
         }
@@ -77,25 +79,37 @@ class TrainTableViewController: UITableViewController {
     }
     
     @objc func trainFetch() {
-        print("The closest station is: \(closestStationCode)")
-        if var urlComponents = URLComponents(string: "https://api.wmata.com/StationPrediction.svc/json/GetPrediction/\(closestStationCode)") {
-            urlComponents.query = "api_key=\(apiKey)"
-            
-            if let url = urlComponents.url {
-                print("train fetch url: \(url)")
-                let defaultSession = URLSession(configuration: .default)
-                let dataTask = defaultSession.dataTask(with: url) { data, response, error in
-                    if let error = error {
-                        print("Error: " + error.localizedDescription + "\n")
-                    } else if let data = data,
-                        let response = response as? HTTPURLResponse,
-                        response.statusCode == 200 {
-                        self.parseMetroArrivals(JSON(data: data))
-                    }
+        guard !closestStationCode.isEmpty else { return }
+        
+        guard var urlComponents = URLComponents(string: urlString + closestStationCode) else { return }
+        urlComponents.query = "api_key=\(apiKey)"
+        
+        guard let url = urlComponents.url else { return }
+        
+        let defaultSession = URLSession(configuration: .default)
+        let dataTask = defaultSession.dataTask(with: url) { data, response, error in
+            if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
+                    self.parseMetroArrivals(JSON(data: data))
+            } else {
+                if let error = error {
+                    print("Error: " + error.localizedDescription + "\n")
                 }
-                dataTask.resume()
+                
+                DispatchQueue.main.async(execute: {
+                    self.tableData.removeAll()
+                    self.tableView.reloadData()
+                    if let refreshControl = self.refreshControl, refreshControl.isRefreshing {
+                        refreshControl.endRefreshing()
+                    }
+                    
+                    // Show error message
+                    let alertController: UIAlertController = UIAlertController(title: NSLocalizedString("Can't display arrival times", comment: "title for failed train fetch"), message: NSLocalizedString("Train data is not avaliable at this time.", comment: "message for failed train fetch"), preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "OK action"), style: .default, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                })
             }
         }
+        dataTask.resume()
     }
     
     func parseMetroArrivals(_ json: JSON) {
@@ -157,10 +171,6 @@ class TrainTableViewController: UITableViewController {
 extension TrainTableViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation = locations[0] as CLLocation
-        
-        print("user latitude = \(userLocation.coordinate.latitude)")
-        print("user longitude = \(userLocation.coordinate.longitude)")
-        
         getClosestStation(to: userLocation)
         trainFetch()
     }
@@ -196,7 +206,6 @@ extension TrainTableViewController: CLLocationManagerDelegate {
 extension TrainTableViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         // TODO check user location to figure out what station to display and display it
-        print("Metro Station data has been updated")
     }
 }
 

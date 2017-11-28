@@ -23,6 +23,7 @@
 		EB87853E1F7F22CE008ED562 /* H8Z2BL8UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB87853D1F7F22CE008ED562 /* H8Z2BL8UITests.swift */; };
 		EB87854D1F7FEB3D008ED562 /* Train.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB87854C1F7FEB3D008ED562 /* Train.swift */; };
 		EB8785511F7FEBAA008ED562 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8785501F7FEBAA008ED562 /* Car.swift */; };
+		EBF89D7C1FCCD31F004BC461 /* TransportationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF89D7B1FCCD31F004BC461 /* TransportationProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		EB87853F1F7F22CE008ED562 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB87854C1F7FEB3D008ED562 /* Train.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Train.swift; sourceTree = "<group>"; };
 		EB8785501F7FEBAA008ED562 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		EBF89D7B1FCCD31F004BC461 /* TransportationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportationProtocol.swift; sourceTree = "<group>"; };
 		F48062D6E5CB9C700576D687 /* Pods_H8Z2BL8.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_H8Z2BL8.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -156,6 +158,7 @@
 				EB8785241F7F22CE008ED562 /* Assets.xcassets */,
 				EB8785261F7F22CE008ED562 /* LaunchScreen.storyboard */,
 				EB8785291F7F22CE008ED562 /* Info.plist */,
+				EBF89D7B1FCCD31F004BC461 /* TransportationProtocol.swift */,
 				EB8785541F7FFB4D008ED562 /* Train */,
 				EB8785551F7FFB56008ED562 /* Car */,
 				EB8785561F7FFB5D008ED562 /* Bike */,
@@ -504,6 +507,7 @@
 				EB45A36D1F893691009D1FDD /* FetchBikeStationOperations.swift in Sources */,
 				EB8785231F7F22CE008ED562 /* H8Z2BL8.xcdatamodeld in Sources */,
 				EB8785511F7FEBAA008ED562 /* Car.swift in Sources */,
+				EBF89D7C1FCCD31F004BC461 /* TransportationProtocol.swift in Sources */,
 				EB5488511F81AA7300E6C564 /* FetchMetroStationsOperation.swift in Sources */,
 				EB87851B1F7F22CE008ED562 /* AppDelegate.swift in Sources */,
 			);
